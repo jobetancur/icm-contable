@@ -48,12 +48,12 @@ export default function UserDetails({
 
   console.log(data); 
 
-  const attendsDate = new Date(data?.attendsSince.seconds * 1000);
-  const attendsSince = attendsDate.toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  });
+  // const attendsDate = new Date(data?.attendsSince.seconds * 1000);
+  // const attendsSince = attendsDate.toLocaleDateString('es-ES', {
+  //   day: '2-digit',
+  //   month: 'short',
+  //   year: 'numeric'
+  // });
 
   const birthdate = new Date(data?.birthday.seconds * 1000);
   const birthday = birthdate.toLocaleDateString('es-ES', {
