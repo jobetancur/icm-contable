@@ -70,7 +70,7 @@ export default function UserDetails({
     backgroundColor: isDark(theme) ? 'grey.800' : 'grey.100'
   }}>
       <Button fullWidth variant="contained" startIcon={<Add />} onClick={() => setOpenModal(true)}>
-        Add Contact
+        Editar Usuario
       </Button>
 
       <Modal open={openModal} handleClose={handleCloseModal}>
