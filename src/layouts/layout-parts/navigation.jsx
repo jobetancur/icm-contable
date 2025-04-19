@@ -95,6 +95,7 @@ export const navigations = [{
   path: '/dashboard/account'
 }, {
   name: 'Usuarios',
+  name: 'Usuarios',
   icon: duotone.UserList,
   children: [{
     name: 'Crear usuario',
