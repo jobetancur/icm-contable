@@ -89,6 +89,7 @@ export const createAvatar = async (file) => {
   await uploadBytes(storageRef, file);
   const url = await getDownloadURL(storageRef);
   // Retornar la URL de la imagen
+  console.log(url);
   return url;
 };
 
@@ -125,11 +126,21 @@ export const createUser = async (values) => {
       lastName: values.lastName,
       email: values.email,
       phone: values.phone,
-      country: values.country,
-      city: values.city,
+      address: values.address,
+      attendsSince: values.attendsSince,
+      birthday: values.birthday,
       role: values.role,
+      department: values.department,
+      function: values.function,
+      site: values.site,
+      training: values.training,
+      level: values.level,
+      baptized: values.baptized === "true" ? true : false,
+      mentor: values.mentor,
+      document: values.document,
+      maritalStatus: values.maritalStatus,
       avatar: values.avatar,
-      organization: values.organization,
+      neighborhood: values.neighborhood,
     });
 
     return values;

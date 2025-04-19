@@ -82,36 +82,40 @@ export const navigations = [{
 // }, 
 {
   type: 'label',
-  label: 'Management'
+  label: 'Gestión'
 }, 
 {
-  name: 'Profile',
+  name: 'Perfil',
   icon: duotone.UserProfile,
   path: '/dashboard/profile'
 }, 
 {
-  name: 'Account',
+  name: 'Cuenta',
   icon: duotone.Accounts,
   path: '/dashboard/account'
 }, {
-  name: 'Users',
+  name: 'Usuarios',
   icon: duotone.UserList,
   children: [{
-    name: 'Add User',
+    name: 'Crear usuario',
     path: '/dashboard/add-user'
-  }, {
-    name: 'User List 1',
-    path: '/dashboard/user-list'
-  }, {
-    name: 'User Grid 1',
-    path: '/dashboard/user-grid'
-  }, {
-    name: 'User List 2',
+  }, 
+  // {
+  //   name: 'User List 1',
+  //   path: '/dashboard/user-list'
+  // }, {
+  //   name: 'User Grid 1',
+  //   path: '/dashboard/user-grid'
+  // }, 
+  {
+    name: 'Lista de usuarios',
     path: '/dashboard/user-list-2'
-  }, {
-    name: 'User Grid 2',
-    path: '/dashboard/user-grid-2'
-  }]
+  }, 
+  // {
+  //   name: 'User Grid 2',
+  //   path: '/dashboard/user-grid-2'
+  // }
+]
 }, 
 // {
 //   name: 'Products',

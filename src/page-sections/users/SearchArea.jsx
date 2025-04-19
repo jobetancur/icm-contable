@@ -32,7 +32,7 @@ export default function SearchArea(props) {
       {
       /* SEARCH BOX */
     }
-      <TextField value={value} onChange={onChange} placeholder="Search..." InputProps={{
+      <TextField value={value} onChange={onChange} placeholder="Buscar..." InputProps={{
       startAdornment: <Search />
     }} sx={{
       maxWidth: 400,
@@ -42,7 +42,7 @@ export default function SearchArea(props) {
       {
       /* NAVIGATION BUTTONS */
     }
-      <Box flexShrink={0} className="actions">
+      {/* <Box flexShrink={0} className="actions">
         <IconButton onClick={() => navigate(listRoute)}>
           <FormatBullets sx={{
           color: activeColor(listRoute)
@@ -54,6 +54,6 @@ export default function SearchArea(props) {
           color: activeColor(gridRoute)
         }} />
         </IconButton>
-      </Box>
+      </Box> */}
     </FlexBetween>;
 }

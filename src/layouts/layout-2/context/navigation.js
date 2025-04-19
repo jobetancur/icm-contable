@@ -44,32 +44,36 @@ export const navigation = [{
     path: '/dashboard/job-management'
   }]
 }, {
-  name: 'Profile',
+  name: 'Perfil',
   Icon: duotone.UserProfile,
   path: '/dashboard/profile'
 }, {
-  name: 'Account',
+  name: 'Cuenta',
   Icon: duotone.Accounts,
   path: '/dashboard/account'
 }, {
-  name: 'Users',
+  name: 'Usuarios',
   Icon: duotone.UserList,
   children: [{
-    name: 'Add User',
+    name: 'Crear usuario',
     path: '/dashboard/add-user'
-  }, {
-    name: 'User List 1',
-    path: '/dashboard/user-list'
-  }, {
-    name: 'User Grid 1',
-    path: '/dashboard/user-grid'
-  }, {
+  }, 
+  // {
+  //   name: 'User List 1',
+  //   path: '/dashboard/user-list'
+  // }, {
+  //   name: 'User Grid 1',
+  //   path: '/dashboard/user-grid'
+  // }, 
+  {
     name: 'User List 2',
     path: '/dashboard/user-list-2'
-  }, {
-    name: 'User Grid 2',
-    path: '/dashboard/user-grid-2'
-  }]
+  }, 
+  // {
+  //   name: 'User Grid 2',
+  //   path: '/dashboard/user-grid-2'
+  // }
+]
 }, {
   name: 'Products',
   Icon: duotone.AdminEcommerce,

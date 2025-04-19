@@ -67,7 +67,7 @@ const headCells = [{
   id: 'name',
   numeric: true,
   disablePadding: false,
-  label: 'Name'
+  label: 'Nombre'
 }, {
   id: 'function',
   numeric: true,

@@ -48,14 +48,14 @@ export default function UserDetails({
 
   console.log(data); 
 
-  const attendsDate = new Date(data?.attendsSince.seconds * 1000);
+  const attendsDate = new Date(data?.attendsSince?.seconds * 1000);
   const attendsSince = attendsDate.toLocaleDateString('es-ES', {
     day: '2-digit',
     month: 'short',
     year: 'numeric'
   });
 
-  const birthdate = new Date(data?.birthday.seconds * 1000);
+  const birthdate = new Date(data?.birthday?.seconds * 1000);
   const birthday = birthdate.toLocaleDateString('es-ES', {
     day: '2-digit',
     month: 'short',
@@ -70,7 +70,7 @@ export default function UserDetails({
     backgroundColor: isDark(theme) ? 'grey.800' : 'grey.100'
   }}>
       <Button fullWidth variant="contained" startIcon={<Add />} onClick={() => setOpenModal(true)}>
-        Add Contact
+        Agregar Contacto
       </Button>
 
       <Modal open={openModal} handleClose={handleCloseModal}>
@@ -125,14 +125,14 @@ export default function UserDetails({
             <ListItem Icon={City} title={data.site} />
             <ListItem Icon={Email} title={data.email} />
             <ListItem Icon={Whatsapp} title={data.phone} />
-            <ListItem Icon={ShareVs} title="http://carriepage.com" />
-            <ListItem Icon={Flag} title="6956 Henderson Park" />
+            <ListItem Icon={Messenger} title={data.phone} />
+            {/* <ListItem Icon={ShareVs} title="http://carriepage.com" /> */}
+            {/* <ListItem Icon={Flag} title="6956 Henderson Park" /> */}
           </Box>
 
           <Box mt={2}>
-            <ListItem Icon={Messenger} title={data.phone} />
-            <ListItem Icon={Facebook} title="facebook-carrie-page" />
-            <ListItem Icon={Skype} title="carrie-page" />
+            {/* <ListItem Icon={Facebook} title="facebook-carrie-page" />
+            <ListItem Icon={Skype} title="carrie-page" /> */}
           </Box>
         </> : <Box height="100%" display="flex" alignItems="center" justifyContent="center" color="text.secondary">
           No Data

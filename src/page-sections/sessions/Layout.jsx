@@ -6,6 +6,7 @@ import Divider from '@mui/material/Divider'; // CUSTOM COMPONENTS
 
 import { H3, H6, Paragraph } from '@/components/typography';
 import FlexRowAlign from '@/components/flexbox/FlexRowAlign'; // =========================================================================
+import { Stack } from '@mui/material';
 
 // =========================================================================
 export default function Layout({
@@ -27,20 +28,33 @@ export default function Layout({
               </Paragraph>
             </Box>
 
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
+            <Stack 
+              direction={{ xs: 'column', sm: 'row' }}
+              justifyContent="space-between"
+              alignItems="center"
+              spacing={{ xs: 2, sm: 1 }}
+              width="100%"
             >
-              <img src="/static/logo/icm-vida-nueva.png" alt="footer" 
-                style={{ width: '190px' }}
+              <Box
+                component="img"
+                src="/static/logo/icm-vida-nueva.png"
+                alt="footer"
+                sx={{
+                  width: { xs: '150px', sm: '170px', md: '190px' },
+                  maxWidth: '100%'
+                }}
               />
-              <img src="/static/logo/logo-asambleas.png" alt="footer" 
-                style={{ width: '202px', height: '51px' }}
+              <Box
+                component="img"
+                src="/static/logo/logo-asambleas.png" 
+                alt="footer"
+                sx={{
+                  width: { xs: '160px', sm: '180px', md: '202px' },
+                  height: { xs: '40px', sm: '45px', md: '51px' },
+                  maxWidth: '100%'
+                }}
               />
-            </div>
+            </Stack>
           </Box>
         </FlexRowAlign>
       </Grid>

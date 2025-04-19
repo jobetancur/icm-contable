@@ -21,6 +21,7 @@ import Layout from '../Layout'; // CUSTOM COMPONENTS
 import Link from '@/components/link';
 import { H5, H6, Paragraph } from '@/components/typography';
 import { FlexBetween, FlexBox } from '@/components/flexbox'; // CUSTOM ICON COMPONENTS
+import toast, { Toaster } from 'react-hot-toast';
 
 import Twitter from '@/icons/social/Twitter';
 import Facebook from '@/icons/social/Facebook';
@@ -50,8 +51,8 @@ export default function LoginPageView() {
     remember: true
   };
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-    password: Yup.string().min(6, 'Password should be of minimum 6 characters length').required('Password is required')
+    email: Yup.string().email('Debe ingresar un email valido').max(255).required('Email es requerido'),
+    password: Yup.string().min(6, 'La contraseña debe contener mínimo 6 caracteres').required('Contraseña es requerida')
   });
   const {
     errors,
@@ -69,10 +70,12 @@ export default function LoginPageView() {
         await signInWithEmail(values.email, values.password);
       } catch (error) {
         console.log(error);
+        toast.error("Correo o contraseña incorrectos");
       }
     }
   });
   return <Layout login>
+      <Toaster position="top-right" />
       <Box maxWidth={550} p={4}>
         <H5 fontSize={{
         sm: 30,
@@ -86,7 +89,7 @@ export default function LoginPageView() {
                 Ingresa con tu correo y contraseña
               </H6>
 
-              <TextField fullWidth placeholder="Enter your work email" name="email" onBlur={handleBlur} value={values.email} onChange={handleChange} helperText={touched.email && errors.email} error={Boolean(touched.email && errors.email)} />
+              <TextField fullWidth placeholder="Ingrese su email" name="email" onBlur={handleBlur} value={values.email} onChange={handleChange} helperText={touched.email && errors.email} error={Boolean(touched.email && errors.email)} />
             </Grid>
 
             <Grid item xs={12}>
