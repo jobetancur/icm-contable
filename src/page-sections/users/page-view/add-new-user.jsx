@@ -12,7 +12,6 @@ import * as Yup from "yup";
 import { Field, useFormik } from "formik"; // CUSTOM COMPONENTS
 
 import { Paragraph, Small } from "@/components/typography"; // CUSTOM UTILS METHOD
-import { Paragraph, Small } from "@/components/typography"; // CUSTOM UTILS METHOD
 
 import { isDark } from "@/utils/constants"; // STYLED COMPONENTS
 import { KeyboardArrowDown } from "@mui/icons-material";
@@ -29,21 +28,16 @@ const SwitchWrapper = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
 });
+
 const StyledCard = styled(Card)({
   padding: 24,
   minHeight: 400,
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
-  display: "flex",
-  alignItems: "center",
-  flexDirection: "column",
 });
-const ButtonWrapper = styled("div")(({ theme }) => ({
+
 const ButtonWrapper = styled("div")(({ theme }) => ({
   width: 100,
   height: 100,
@@ -52,13 +46,8 @@ const ButtonWrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: theme.palette.grey[isDark(theme) ? 700 : 100],
-  display: "flex",
-  borderRadius: "50%",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: theme.palette.grey[isDark(theme) ? 700 : 100],
 }));
-const UploadButton = styled("div")(({ theme }) => ({
+
 const UploadButton = styled("div")(({ theme }) => ({
   width: 50,
   height: 50,
@@ -66,14 +55,10 @@ const UploadButton = styled("div")(({ theme }) => ({
   borderRadius: "50%",
   alignItems: "center",
   justifyContent: "center",
-  display: "flex",
-  borderRadius: "50%",
-  alignItems: "center",
-  justifyContent: "center",
   backgroundColor: theme.palette.grey[isDark(theme) ? 600 : 200],
   border: `1px solid ${theme.palette.background.paper}`,
-  border: `1px solid ${theme.palette.background.paper}`,
 }));
+
 export default function AddNewUserPageView() {
 
   const [avatar, setAvatar] = useState('');
@@ -91,8 +76,6 @@ export default function AddNewUserPageView() {
     }
   }, [avatarUrl]);
 
-  console.log(avatar);
-
   const initialValues = {
     fullName: '',
     email: '',
@@ -104,6 +87,7 @@ export default function AddNewUserPageView() {
     zip: '',
     about: ''
   };
+  
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required('Name is Required!'),
     email: Yup.string().email().required('Email is Required!'),
@@ -115,6 +99,7 @@ export default function AddNewUserPageView() {
     zip: Yup.string().required('Zip is Required!'),
     about: Yup.string().required('About is Required!')
   });
+  
   const { 
     values, 
     errors, 
@@ -125,8 +110,19 @@ export default function AddNewUserPageView() {
   } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: () => {}
+    onSubmit: async (values) => {
+      try {
+        await createUser({
+          ...values,
+          avatar: avatar || ""
+        });
+        toast.success('Usuario creado exitosamente');
+      } catch (error) {
+        toast.error('Error al crear usuario: ' + error.message);
+      }
+    }
   });
+  
   return <div className="pt-2 pb-4">
       <Grid container spacing={3}>
         <Grid item md={4} xs={12} maxHeight={200}>
@@ -249,5 +245,5 @@ export default function AddNewUserPageView() {
         </Grid>
       </Grid>
     </div>
-  );
 }
+
