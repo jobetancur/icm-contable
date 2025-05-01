@@ -4,41 +4,15 @@ import admin from "firebase-admin";
 admin.initializeApp();
 const firestore = admin.firestore();
 
-export const createUserFromAdmin = functions.https.onCall(async (data, context) => {
-  // Verificar si el usuario está autenticado
-  console.log("Contexto de autenticación:", context.auth);
-  
-  if (!context.auth) {
-    throw new functions.https.HttpsError("unauthenticated", "Debes iniciar sesión");
-  }
+export const createUserFromAdmin = functions.https.onCall(async (data) => {
 
+  console.log("Datos recibidos:", data);
+ 
   try {
-    const {
-      email,
-      firstName,
-      lastName,
-      phone,
-      address,
-      attendsSince,
-      birthday,
-      role,
-      department,
-      function: userFunction,
-      site,
-      training,
-      level,
-      baptized,
-      mentor,
-      document,
-      maritalStatus,
-      avatar,
-      neighborhood,
-    } = data;
-
     // Crear usuario en Auth
     const userRecord = await admin.auth().createUser({
-      email,
-      password: "123456", // Puedes cambiar la contraseña por defecto
+      email: data.email,
+      password: "123456",
     });
 
     const uid = userRecord.uid;
@@ -46,25 +20,27 @@ export const createUserFromAdmin = functions.https.onCall(async (data, context) 
     // Guardar en Firestore
     await firestore.collection("users").add({
       uid,
-      email,
-      firstName,
-      lastName,
-      phone,
-      address,
-      attendsSince,
-      birthday,
-      role,
-      department,
-      function: userFunction,
-      site,
-      training,
-      level,
-      baptized: baptized === "true" || baptized === true,
-      mentor,
-      document,
-      maritalStatus,
-      avatar,
-      neighborhood,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      address: data.address,
+      phone: data.phone,
+      profile: data.profile,
+      attendsSince: data.attendsSince,
+      birthday: data.birthday,
+      avatar: data.avatar,
+      role: data.role,
+      baptized: data.baptized === "true" ? true : false,
+      department: data.department,
+      document: data.document,
+      function: data.function,
+      gender: data.gender,
+      level: data.level,
+      maritalStatus: data.maritalStatus,
+      mentor: data.mentor,
+      site: data.site,
+      training: data.training,
+      neighborhood: data.neighborhood,
     });
 
     return { success: true, uid };
