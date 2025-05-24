@@ -152,24 +152,29 @@ export const navigations = [{
 //   }]
 // }, 
 {
-  name: 'Projects',
+  name: 'Proyectos',
   icon: duotone.ProjectChart,
   children: [{
-    name: 'Project 1',
+    name: 'Lista de Proyectos',
     path: '/dashboard/projects/version-1'
-  }, {
-    name: 'Project 2',
-    path: '/dashboard/projects/version-2'
-  }, {
-    name: 'Project 3',
-    path: '/dashboard/projects/version-3'
-  }, {
-    name: 'Project Details',
+  }, 
+  // {
+  //   name: 'Project 2',
+  //   path: '/dashboard/projects/version-2'
+  // }, 
+  // {
+  //   name: 'Project 3',
+  //   path: '/dashboard/projects/version-3'
+  // }, 
+  {
+    name: 'Detalles de Proyecto',
     path: '/dashboard/projects/details'
-  }, {
-    name: 'Team Member',
-    path: '/dashboard/projects/team-member'
-  }]
+  }, 
+  // {
+  //   name: 'Team Member',
+  //   path: '/dashboard/projects/team-member'
+  // }
+]
 }, {
   name: 'Registros Contables',
   icon: duotone.DataTable,

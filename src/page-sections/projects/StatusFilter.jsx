@@ -6,8 +6,6 @@ import styled from '@mui/material/styles/styled'; // CUSTOM COMPONENTS
 
 import { H6, Paragraph } from '@/components/typography'; // CUSTOM DATA
 
-import { PROJECT_STATUS } from '@/__fakeData__/projects'; // STYLED COMPONENTS
-
 const StyledRoot = styled(Card)({
   paddingTop: '1.5rem',
   paddingInline: '2rem',
@@ -16,25 +14,36 @@ const StyledRoot = styled(Card)({
   }
 }); // ==============================================================
 
-// ==============================================================
+const STATUS_OPTIONS = [
+  { value: 'all', label: 'Todos' },
+  { value: 'En ejecución', label: 'En ejecución' },
+  { value: 'Pendiente', label: 'Pendiente' },
+  { value: 'Finalizado', label: 'Finalizado' },
+  { value: 'Bloqueado', label: 'Bloqueado' }
+];
+
 export default function StatusFilter({
   value,
-  handleChange
+  handleChange,
+  projects = []
 }) {
+  console.log('value', value);
+  console.log('projects', projects);
+
   return <StyledRoot>
       <H6 fontSize={20} mb={2}>
-        Projects
+        Proyectos
       </H6>
-
       <TabContext value={value}>
         <TabList variant="scrollable" onChange={(_, value) => handleChange(value)}>
-          {PROJECT_STATUS.map(({
-          amount,
-          title,
-          value
-        }) => <Tab disableRipple key={title} value={value} label={<Paragraph>
-                  {title} ({amount})
-                </Paragraph>} />)}
+          {STATUS_OPTIONS.map(option => (
+            <Tab
+              disableRipple
+              key={option.value}
+              value={option.value}
+              label={<Paragraph>{option.label} </Paragraph>}
+            />
+          ))}
         </TabList>
       </TabContext>
     </StyledRoot>;

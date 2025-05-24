@@ -28,10 +28,10 @@ export default function SearchFilter({
   handleOpenModal
 }) {
   return <SearchAction>
-      <SearchInput placeholder="Find Projects" onChange={e => handleChange(e.target.value)} />
+      <SearchInput placeholder="Buscar proyectos" onChange={e => handleChange(e.target.value)} />
 
       <Button variant="contained" startIcon={<Add />} onClick={handleOpenModal}>
-        Create a project
+        Crear un proyecto
       </Button>
     </SearchAction>;
 }
