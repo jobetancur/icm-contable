@@ -3,12 +3,12 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useState, useEffect, useCallback } from 'react'; // CUSTOM COMPONENTS
+import { useState, useEffect } from 'react'; // CUSTOM COMPONENTS
 
 import { H6 } from '@/components/typography';
 import Scrollbar from '@/components/scrollbar';
 import FlexBox from '@/components/flexbox/FlexBox';
-import { notify } from '@/components/notification/GlobalNotification'; // STYLED COMPONENT
+import NotificationSnackbar from '@/components/notification/NotificationSnackbar'; // STYLED COMPONENT
 
 import { StyledAppModal } from './styles';
 import { supabase } from '@/utils/supabaseClient'; // ======================================================================================
@@ -21,8 +21,17 @@ export default function CreateForm({
   edit,
   data
 }) {
-  // Ya no necesitamos un estado local para las notificaciones
-  // Usaremos el sistema de notificación global
+  // Estado para las notificaciones
+  const [notification, setNotification] = useState({
+    open: false,
+    message: '',
+    severity: 'success'
+  });
+
+  // Cerrar notificación
+  const handleCloseNotification = () => {
+    setNotification({...notification, open: false});
+  };
   
   // Listas para selects
   const ACCOUNTS = [
@@ -144,13 +153,21 @@ export default function CreateForm({
           // Actualizar registro existente
           ({ error } = await supabase.from('financial').update(record).eq('id', data.id));
           if (!error) {
-            notify('Registro actualizado exitosamente', 'success');
+            setNotification({
+              open: true,
+              message: 'Registro actualizado exitosamente',
+              severity: 'success'
+            });
           }
         } else {
           // Insertar nuevo registro
           ({ error } = await supabase.from('financial').insert([record]));
           if (!error) {
-            notify('Registro creado exitosamente', 'success');
+            setNotification({
+              open: true,
+              message: 'Registro creado exitosamente',
+              severity: 'success'
+            });
           }
         }
         
@@ -162,10 +179,18 @@ export default function CreateForm({
             onClose();
           }, 500);
         } else {
-          notify('Error al guardar: ' + error.message, 'error');
+          setNotification({
+            open: true,
+            message: 'Error al guardar: ' + error.message,
+            severity: 'error'
+          });
         }
       } catch (err) {
-        notify('Error inesperado: ' + err.message, 'error');
+        setNotification({
+          open: true,
+          message: 'Error inesperado: ' + err.message,
+          severity: 'error'
+        });
       }
     }
   });
@@ -176,20 +201,16 @@ export default function CreateForm({
       console.log('Editando registro:', data);
       console.log('Tipo determinado:', determineType());
     }
-  }, [edit, data, determineType]);
+  }, [edit, data]);
   
   return <StyledAppModal open={open} handleClose={onClose}>
-      <H6 fontSize={18} mb={3} sx={{ mt: 1 }}>
+      <H6 fontSize={18} mb={2}>
         {edit ? 'Editar movimiento' : 'Agregar movimiento'}
       </H6>
 
       <form onSubmit={handleSubmit}>
-        <Scrollbar style={{ maxHeight: 400, marginTop: '8px' }}>
-          <Grid 
-            container 
-            spacing={2} 
-            sx={{ mt: 0, p: 1 }} // Contrarrestar el margen negativo y añadir padding
-          >
+        <Scrollbar style={{ maxHeight: 400 }}>
+          <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
                 select
@@ -235,7 +256,6 @@ export default function CreateForm({
                 error={Boolean(errors.date && touched.date)}
                 helperText={touched.date && errors.date}
                 InputLabelProps={{ shrink: true }}
-                FormHelperTextProps={{ sx: { mt: 0.5 } }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -278,7 +298,7 @@ export default function CreateForm({
                   native: true // Esto hace que funcione correctamente con las etiquetas <option>
                 }}
               >
-                <option value=""></option>
+                <option value="">Selecciona una cuenta</option>
                 {ACCOUNTS.map(acc => (
                   <option key={acc.id} value={acc.id}>{acc.name}</option>
                 ))}
@@ -299,7 +319,7 @@ export default function CreateForm({
                   native: true // Esto hace que funcione correctamente con las etiquetas <option>
                 }}
               >
-                <option value=""></option>
+                <option value="">Selecciona un sitio</option>
                 {SITES.map(site => (
                   <option key={site.id} value={site.id}>{site.name}</option>
                 ))}
@@ -321,7 +341,7 @@ export default function CreateForm({
                     native: true // Esto hace que funcione correctamente con las etiquetas <option>
                   }}
                 >
-                  <option value=""></option>
+                  <option value="">Selecciona un tipo</option>
                   {TYPES_INCOME.map(tipo => (
                     <option key={tipo.id} value={tipo.id}>{tipo.name}</option>
                   ))}
@@ -344,7 +364,7 @@ export default function CreateForm({
                     native: true // Esto hace que funcione correctamente con las etiquetas <option>
                   }}
                 >
-                  <option value=""></option>
+                  <option value="">Selecciona un tipo</option>
                   {TYPES_EXPENDITURES.map(tipo => (
                     <option key={tipo.id} value={tipo.id}>{tipo.name}</option>
                   ))}
@@ -362,5 +382,13 @@ export default function CreateForm({
           </Button>
         </FlexBox>
       </form>
+
+      {/* Notificaciones */}
+      <NotificationSnackbar 
+        open={notification.open} 
+        message={notification.message} 
+        severity={notification.severity} 
+        onClose={handleCloseNotification} 
+      />
     </StyledAppModal>;
 }

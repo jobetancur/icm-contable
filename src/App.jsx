@@ -16,6 +16,9 @@ import { createCustomTheme } from './theme'; // SITE SETTINGS CUSTOM DEFINED HOO
 import useSettings from '@/hooks/useSettings'; // I18N FILE
 
 import './i18n';
+
+// IMPORTAR COMPONENTE DE NOTIFICACIÓN GLOBAL
+import GlobalNotification from '@/components/notification/GlobalNotification';
 export default function App() {
   // SITE SETTINGS CUSTOM DEFINED HOOK
   const {
@@ -31,6 +34,7 @@ export default function App() {
           <RTL>
             <CssBaseline />
             <RouterProvider router={router} />
+            <GlobalNotification />
           </RTL>
         </AuthProvider>
       </ThemeProvider>

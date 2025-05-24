@@ -23,6 +23,7 @@
     "@mui/x-date-pickers": "^7.2.0",
     "@mui/x-tree-view": "^7.3.0",
     "@south-paw/react-vector-maps": "^3.2.0",
+    "@supabase/supabase-js": "^2.49.8",
     "@tanstack/react-table": "^8.16.0",
     "apexcharts": "^3.47.0",
     "aws-amplify": "^5.3.4",

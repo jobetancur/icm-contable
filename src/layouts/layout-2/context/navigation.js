@@ -139,10 +139,10 @@ export const navigation = [{
     path: '/dashboard/projects/team-member'
   }]
 }, {
-  name: 'Data Table',
+  name: 'Registros Contables',
   Icon: duotone.DataTable,
   children: [{
-    name: 'Data Table 1',
+    name: 'Contabilidad',
     path: '/dashboard/data-table-1'
   }]
 }, {

@@ -95,7 +95,6 @@ export const navigations = [{
   path: '/dashboard/account'
 }, {
   name: 'Usuarios',
-  name: 'Usuarios',
   icon: duotone.UserList,
   children: [{
     name: 'Crear usuario',
@@ -134,21 +133,7 @@ export const navigations = [{
 //     name: 'Product Details',
 //     path: '/dashboard/product-details'
 //   }]
-// }, 
-{
-  name: 'Invoice',
-  icon: duotone.Invoice,
-  children: [{
-    name: 'Invoice List',
-    path: '/dashboard/invoice-list'
-  }, {
-    name: 'Invoice Details',
-    path: '/dashboard/invoice-details'
-  }, {
-    name: 'Create Invoice',
-    path: '/dashboard/create-invoice'
-  }]
-}, 
+// },  
 // {
 //   name: 'Ecommerce',
 //   icon: duotone.Ecommerce,
@@ -186,26 +171,40 @@ export const navigations = [{
     path: '/dashboard/projects/team-member'
   }]
 }, {
-  name: 'Data Table',
+  name: 'Registros Contables',
   icon: duotone.DataTable,
   children: [{
-    name: 'Data Table 1',
+    name: 'Contabilidad',
     path: '/dashboard/data-table-1'
   }]
 }, {
-  type: 'label',
-  label: 'Apps'
-}, 
+  name: 'Recibos',
+  icon: duotone.Invoice,
+  children: [{
+    name: 'Lista de Recibos',
+    path: '/dashboard/invoice-list'
+  }, {
+    name: 'Detalles de Recibo',
+    path: '/dashboard/invoice-details'
+  }, {
+    name: 'Crear Recibo',
+    path: '/dashboard/create-invoice'
+  }]
+},
+// {
+//   type: 'label',
+//   label: 'Apps'
+// }, 
 // {
 //   name: 'Todo List',
 //   icon: duotone.TodoList,
 //   path: '/dashboard/todo-list'
 // }, 
-{
-  name: 'Chats',
-  icon: duotone.Chat,
-  path: '/dashboard/chat'
-}, 
+// {
+//   name: 'Chats',
+//   icon: duotone.Chat,
+//   path: '/dashboard/chat'
+// }, 
 // {
 //   name: 'Email',
 //   icon: duotone.Inbox,
